@@ -308,25 +308,29 @@ fetchData();
 
 window.addEventListener('DOMContentLoaded', (event) => {
   // Get the element with the id "music-div"
-  const musicDiv = document.getElementById('.music-div');
- 
+  const musicDiv = document.getElementById('music-div');
+
   // Create an audio element and set its src attribute to the MP3 file
   const audio = document.createElement('audio');
   audio.src = 'Supershy.mp3';
   audio.preload = 'none';
-  
+
   const volumeSlider = document.createElement('input');
   volumeSlider.type = 'range';
   volumeSlider.min = 0;
   volumeSlider.max = 1;
-  volumeSlider.value = 0.5; // Set initial volume to 50%
+
+  // Increase initial volume to 55% (0.5 + 0.05)
+  volumeSlider.value = 0.55;
+  audio.volume = volumeSlider.value;  // Set initial volume in audio element
+
   volumeSlider.addEventListener('input', (event) => {
     audio.volume = event.target.value;
   });
 
   // Add a delay before playing the MP3
   window.setTimeout(() => {
-       // Play the audio
-       audio.play();
+    // Play the audio
+    audio.play();
   }, 5000); // 5000 milliseconds = 5 seconds delay
- });
+});
